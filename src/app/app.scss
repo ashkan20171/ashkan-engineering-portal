@@ -1,0 +1,14 @@
+.page-placeholder {
+  min-height: 60vh;
+  padding-block: 5rem;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  p {
+    color: var(--color-text-secondary);
+  }
+}

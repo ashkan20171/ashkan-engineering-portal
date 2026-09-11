@@ -1,0 +1,285 @@
+<section class="page-banner">
+  <div class="container">
+    <span class="banner-badge">ارتباط با ما</span>
+
+    <h1>تماس با شرکت مهندسی اشکان</h1>
+
+    <p>
+      آماده پاسخگویی به سوالات فنی، برآورد هزینه و ارائه مشاوره تخصصی
+    </p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="container contact-grid">
+
+    <!-- اطلاعات تماس -->
+    <div class="contact-info">
+      <h2>اطلاعات تماس و دفتر مرکزی</h2>
+
+      <p class="desc">
+        جهت هماهنگی جلسات حضوری، بازدید از پروژه‌ها و یا دریافت پیش‌فاکتور
+        می‌توانید از طریق راه‌های ارتباطی زیر با ما در تماس باشید.
+      </p>
+
+      <div class="info-items">
+
+        <div class="info-item">
+          <div class="icon-wrap">
+            <mat-icon aria-hidden="true">phone</mat-icon>
+          </div>
+
+          <div>
+            <h4>شماره‌های تماس</h4>
+
+            <p>
+              <a href="tel:+982100000000">۰۲۱-۰۰۰۰۰۰۰۰</a>
+            </p>
+
+            <p>
+              <a href="tel:+989120000000">۰۹۱۲-۰۰۰۰۰۰۰</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon-wrap">
+            <mat-icon aria-hidden="true">email</mat-icon>
+          </div>
+
+          <div>
+            <h4>پست الکترونیک</h4>
+
+            <p>
+              <a href="mailto:info@ashkan.ir">
+                info@ashkan.ir
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon-wrap">
+            <mat-icon aria-hidden="true">location_on</mat-icon>
+          </div>
+
+          <div>
+            <h4>نشانی دفتر مرکزی</h4>
+
+            <p>
+              پرند، بلوار ابن سینا، فاز 4 مسکن میثم نهاجا
+            </p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="icon-wrap">
+            <mat-icon aria-hidden="true">schedule</mat-icon>
+          </div>
+
+          <div>
+            <h4>ساعات کاری</h4>
+
+            <p>
+              شنبه تا چهارشنبه: ۸:۰۰ الی ۱۷:۰۰
+              <br />
+              پنجشنبه: ۸:۰۰ الی ۱۳:۰۰
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- فرم تماس -->
+    <div class="contact-form-card">
+      <h3>ارسال پیام و استعلام آنلاین</h3>
+
+      <p class="form-description">
+        اطلاعات پروژه خود را بنویسید؛ کارشناسان ما ظرف حداکثر ۲۴ ساعت پاسخ
+        خواهند داد.
+      </p>
+
+      @if (submissionStatus() === 'success') {
+        <div class="alert alert-success" role="alert">
+          <mat-icon aria-hidden="true">check_circle</mat-icon>
+          <span>{{ statusMessage() }}</span>
+        </div>
+      }
+
+      @if (submissionStatus() === 'error') {
+        <div class="alert alert-danger" role="alert">
+          <mat-icon aria-hidden="true">error</mat-icon>
+          <span>{{ statusMessage() }}</span>
+        </div>
+      }
+
+      <form
+        [formGroup]="contactForm"
+        (ngSubmit)="onSubmit()"
+        novalidate
+      >
+        <!-- نام -->
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>نام و نام خانوادگی</mat-label>
+
+          <input
+            matInput
+            formControlName="fullName"
+            placeholder="مثال: اشکان مطاعی"
+            autocomplete="name"
+          />
+
+          @if (
+            contactForm.get('fullName')?.hasError('required') &&
+            contactForm.get('fullName')?.touched
+          ) {
+            <mat-error>وارد کردن نام الزامی است.</mat-error>
+          }
+
+          @if (
+            contactForm.get('fullName')?.hasError('minlength') &&
+            contactForm.get('fullName')?.touched
+          ) {
+            <mat-error>
+              نام باید حداقل ۳ کاراکتر باشد.
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <!-- شماره و ایمیل -->
+        <div class="form-row">
+
+          <mat-form-field appearance="outline">
+            <mat-label>شماره همراه</mat-label>
+
+            <input
+              matInput
+              formControlName="phone"
+              placeholder="09123456789"
+              inputmode="tel"
+              autocomplete="tel"
+              dir="ltr"
+            />
+
+            @if (
+              contactForm.get('phone')?.invalid &&
+              contactForm.get('phone')?.touched
+            ) {
+              <mat-error>
+                شماره موبایل معتبر ۱۱ رقمی وارد کنید.
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>ایمیل اختیاری</mat-label>
+
+            <input
+              matInput
+              formControlName="email"
+              type="email"
+              placeholder="example@mail.com"
+              autocomplete="email"
+              dir="ltr"
+            />
+
+            @if (
+              contactForm.get('email')?.invalid &&
+              contactForm.get('email')?.touched
+            ) {
+              <mat-error>
+                فرمت ایمیل صحیح نیست.
+              </mat-error>
+            }
+          </mat-form-field>
+
+        </div>
+
+        <!-- موضوع -->
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>موضوع پیام / نوع پروژه</mat-label>
+
+          <input
+            matInput
+            formControlName="subject"
+            placeholder="مثال: استعلام هزینه اجرای اسکلت"
+          />
+
+          @if (
+            contactForm.get('subject')?.hasError('required') &&
+            contactForm.get('subject')?.touched
+          ) {
+            <mat-error>
+              موضوع پیام را وارد کنید.
+            </mat-error>
+          }
+
+          @if (
+            contactForm.get('subject')?.hasError('minlength') &&
+            contactForm.get('subject')?.touched
+          ) {
+            <mat-error>
+              موضوع پیام باید حداقل ۴ کاراکتر باشد.
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <!-- متن پیام -->
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>شرح پیام و مشخصات پروژه</mat-label>
+
+          <textarea
+            matInput
+            rows="5"
+            formControlName="message"
+            placeholder="متراژ، موقعیت و نیازمندی‌های پروژه خود را شرح دهید..."
+          ></textarea>
+
+          @if (
+            contactForm.get('message')?.hasError('required') &&
+            contactForm.get('message')?.touched
+          ) {
+            <mat-error>
+              متن پیام نمی‌تواند خالی باشد.
+            </mat-error>
+          }
+
+          @if (
+            contactForm.get('message')?.hasError('minlength') &&
+            contactForm.get('message')?.touched
+          ) {
+            <mat-error>
+              متن پیام باید حداقل ۱۵ کاراکتر باشد.
+            </mat-error>
+          }
+        </mat-form-field>
+
+        <!-- دکمه ارسال -->
+        <button
+          mat-flat-button
+          class="submit-btn"
+          type="submit"
+          [disabled]="isSubmitting()"
+        >
+          @if (isSubmitting()) {
+            <span class="submit-content">
+              <mat-spinner
+                diameter="20"
+                aria-label="در حال ارسال"
+              ></mat-spinner>
+
+              <span>در حال ارسال...</span>
+            </span>
+          } @else {
+            <span class="submit-content">
+              <span>ارسال پیام استعلام</span>
+              <mat-icon aria-hidden="true">send</mat-icon>
+            </span>
+          }
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>

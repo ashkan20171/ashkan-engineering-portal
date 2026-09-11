@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/assets/fonts/vazir.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --color-primary: #123b5d;
+  --color-primary-dark: #0b263d;
+
+  --color-accent: #f28c28;
+  --color-accent-dark: #d66f0d;
+
+  --color-text-primary: #1f2933;
+  --color-text-secondary: #667085;
+
+  --color-background: #f7f9fb;
+  --color-surface: #ffffff;
+  --color-border: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  direction: rtl;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: 'Vazirmatn', sans-serif;
+  line-height: 1.8;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: min(100% - 32px, 1400px);
+  margin-inline: auto;
+}

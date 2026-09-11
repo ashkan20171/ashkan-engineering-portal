@@ -1,0 +1,102 @@
+<!-- Page Hero Banner -->
+<section class="page-banner">
+  <div class="container">
+    <span class="banner-badge">نمونه‌کارها و سوابق</span>
+    <h1>پروژه‌های اجرایی مهندسی اشکان</h1>
+    <p>تلفیقی از دانش روز مهندسی، کیفیت ساخت استاندارد و تعهد به زمان‌بندی دقیق</p>
+  </div>
+</section>
+
+<!-- Main Projects Section -->
+<section class="projects-section">
+  <div class="container">
+
+    <!-- Category Filter Tabs -->
+    <div class="filter-tabs">
+      <button 
+        type="button"
+        [class.active]="selectedCategory() === 'all'" 
+        (click)="setCategory('all')">
+        همه پروژه‌ها
+      </button>
+
+      <button 
+        type="button"
+        [class.active]="selectedCategory() === 'concrete'" 
+        (click)="setCategory('concrete')">
+        اسکلت بتنی
+      </button>
+
+      <button 
+        type="button"
+        [class.active]="selectedCategory() === 'steel'" 
+        (click)="setCategory('steel')">
+        اسکلت فلزی
+      </button>
+
+      <button 
+        type="button"
+        [class.active]="selectedCategory() === 'demolition'" 
+        (click)="setCategory('demolition')">
+        تخریب و پایدارسازی گود
+      </button>
+
+      <button 
+        type="button"
+        [class.active]="selectedCategory() === 'commercial'" 
+        (click)="setCategory('commercial')">
+        ساختمان مدرن
+      </button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+      @for (project of filteredProjects(); track project.id) {
+        <article class="project-card">
+          <!-- Thumbnail & Status -->
+          <div class="card-thumb">
+            <img 
+              [src]="project.image" 
+              [alt]="project.title" 
+              (error)="onImageError($event)" 
+              loading="lazy" 
+            />
+            <span class="status-badge" [class.ongoing]="project.status === 'در حال اجرا'">
+              {{ project.status }}
+            </span>
+          </div>
+
+          <!-- Content Details -->
+          <div class="card-content">
+            <div class="meta-cat">{{ project.categoryTitle }}</div>
+            <h3 class="card-title">{{ project.title }}</h3>
+            
+            <div class="info-list">
+              <div class="info-item">
+                <mat-icon>place</mat-icon>
+                <span>{{ project.location }}</span>
+              </div>
+              <div class="info-item">
+                <mat-icon>square_foot</mat-icon>
+                <span>{{ project.area }}</span>
+              </div>
+            </div>
+
+            <p class="summary">{{ project.description }}</p>
+
+            <a [routerLink]="['/projects', project.id]" class="view-btn">
+              <span>مشاهده مشخصات و گالری</span>
+              <mat-icon>arrow_back</mat-icon>
+            </a>
+          </div>
+        </article>
+      } @empty {
+        <div class="empty-state">
+          <mat-icon>hourglass_empty</mat-icon>
+          <p>در حال حاضر پروژه‌ای در این دسته‌بندی یافت نشد.</p>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

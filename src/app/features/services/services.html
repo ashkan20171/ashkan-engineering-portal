@@ -1,0 +1,98 @@
+<section class="services-page">
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <span>خدمات فنی و مهندسی</span>
+
+      <h1>
+        راهکارهای حرفه‌ای برای ساخت بهتر
+      </h1>
+
+      <p>
+        از طراحی و برنامه‌ریزی تا اجرا و تحویل، در تمام مراحل پروژه همراه شما هستیم.
+      </p>
+
+      <a
+        mat-flat-button
+        class="hero-button"
+        routerLink="/contact"
+      >
+        دریافت مشاوره
+        <mat-icon>arrow_back</mat-icon>
+      </a>
+    </div>
+  </section>
+
+  <!-- Services Details -->
+  <section class="services-detail-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">
+          توانمندی‌های ما
+        </span>
+
+        <h2>خدمات تخصصی شرکت</h2>
+
+        <p>
+          خدمات ما با تمرکز بر کیفیت، ایمنی و کنترل هزینه ارائه می‌شوند.
+        </p>
+      </div>
+
+      <div class="services-detail-grid">
+        @for (service of services; track service.id; let i = $index) {
+          <article class="service-detail-card">
+            <div class="service-detail-image">
+              <img
+                [src]="service.image"
+                [alt]="service.title"
+                width="800"
+                height="560"
+                loading="lazy"
+                (error)="onImageError($event)"
+              />
+
+              <div class="service-detail-number">
+                {{ (i + 1).toString().padStart(2, '0') }}
+              </div>
+            </div>
+
+            <div class="service-detail-content">
+              <div class="service-title-row">
+                <div class="service-page-icon">
+                  <mat-icon>{{ service.icon }}</mat-icon>
+                </div>
+
+                <div>
+                  <span>{{ service.shortTitle }}</span>
+                  <h3>{{ service.title }}</h3>
+                </div>
+              </div>
+
+              <p class="service-description">
+                {{ service.description }}
+              </p>
+
+              <ul>
+                @for (detail of service.details; track detail) {
+                  <li>
+                    <mat-icon>check_circle</mat-icon>
+                    <span>{{ detail }}</span>
+                  </li>
+                }
+              </ul>
+
+              <a
+                mat-button
+                class="service-contact-link"
+                routerLink="/contact"
+              >
+                درخواست مشاوره برای این خدمت
+                <mat-icon>arrow_back</mat-icon>
+              </a>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+</section>

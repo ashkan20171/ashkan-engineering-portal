@@ -1,0 +1,65 @@
+<header class="site-header">
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <span>خدمات تخصصی فنی، مهندسی و ساختمانی</span>
+
+      <div class="top-bar-contact">
+        <a href="tel:+982100000000">
+          <mat-icon>phone</mat-icon>
+          <span>۰۲۱-۰۰۰۰۰۰۰۰</span>
+        </a>
+
+        <a href="mailto:info@ashkan.ir">
+          <mat-icon>email</mat-icon>
+          <span>info&#64;ashkan.ir</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-toolbar">
+    <div class="container toolbar-content">
+      <a class="brand" routerLink="/" aria-label="صفحه اصلی شرکت اشکان">
+        <span class="brand-mark">ا</span>
+        <span class="brand-text">
+          <strong>مهندسی اشکان</strong>
+          <small>طراحی و اجرای پروژه‌های عمرانی</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="منوی اصلی">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">صفحه اصلی</a>
+        <a routerLink="/about" routerLinkActive="active">درباره ما</a>
+        <a routerLink="/services" routerLinkActive="active">خدمات ما</a>
+        <a routerLink="/projects" routerLinkActive="active">پروژه‌ها</a>
+        <a routerLink="/contact" routerLinkActive="active">تماس با ما</a>
+      </nav>
+
+      <div class="toolbar-actions">
+        <a mat-flat-button class="request-button" routerLink="/contact">
+          درخواست مشاوره
+        </a>
+
+        <button
+          mat-icon-button
+          class="mobile-menu-button"
+          type="button"
+          aria-label="منو"
+          (click)="toggleMenu()"
+        >
+          <mat-icon>{{ isMenuOpen() ? 'close' : 'menu' }}</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  @if (isMenuOpen()) {
+    <nav class="mobile-nav" aria-label="منوی موبایل">
+      <a routerLink="/" (click)="closeMenu()">صفحه اصلی</a>
+      <a routerLink="/about" (click)="closeMenu()">درباره ما</a>
+      <a routerLink="/services" (click)="closeMenu()">خدمات ما</a>
+      <a routerLink="/projects" (click)="closeMenu()">پروژه‌ها</a>
+      <a routerLink="/contact" (click)="closeMenu()">تماس با ما</a>
+    </nav>
+  }
+</header>

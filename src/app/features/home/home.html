@@ -1,0 +1,165 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container hero-content">
+    <div class="hero-text">
+      <span class="hero-eyebrow">
+        راهکارهای نوین مهندسی و عمرانی
+      </span>
+
+      <h1>
+        ساخت آینده با
+        <span>مهندسی دقیق</span>
+      </h1>
+
+      <p>
+        شرکت فنی مهندسی اشکان با تکیه بر دانش تخصصی و تجربه اجرایی،
+        خدمات طراحی، اجرا و نظارت پروژه‌های عمرانی را ارائه می‌دهد.
+      </p>
+
+      <div class="hero-actions">
+        <a
+          mat-flat-button
+          class="primary-button"
+          routerLink="/services"
+        >
+          مشاهده خدمات
+          <mat-icon>arrow_back</mat-icon>
+        </a>
+
+        <a
+          mat-stroked-button
+          class="secondary-button"
+          routerLink="/contact"
+        >
+          درخواست مشاوره
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-badge">
+      <strong>۱۰+</strong>
+      <span>سال تجربه مهندسی</span>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-subtitle">
+        چه کارهایی انجام می‌دهیم؟
+      </span>
+
+      <h2>خدمات تخصصی مهندسی</h2>
+
+      <p>
+        ارائه کلیه امور مهندسی عمران، معماری و ساختمانی از ایده تا تحویل کلید
+      </p>
+    </div>
+
+    <div class="services-grid">
+      @for (service of services; track service.id) {
+        <mat-card class="service-card">
+          <div class="card-image-wrap">
+            <img
+              [src]="service.image"
+              [alt]="service.title"
+              width="640"
+              height="360"
+              loading="lazy"
+              (error)="onImageError($event)"
+            />
+
+            <div class="service-icon-wrap">
+              <mat-icon>{{ service.icon }}</mat-icon>
+            </div>
+          </div>
+
+          <mat-card-content class="card-body">
+            <h3>{{ service.title }}</h3>
+            <p>{{ service.description }}</p>
+          </mat-card-content>
+
+          <mat-card-actions class="card-footer">
+            <a
+              mat-button
+              color="primary"
+              routerLink="/services"
+            >
+              اطلاعات بیشتر
+              <mat-icon class="arrow-icon">arrow_back</mat-icon>
+            </a>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section class="projects-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-subtitle">
+        نمونه‌کارهای ما
+      </span>
+
+      <h2>پروژه‌های اجراشده</h2>
+
+      <p>
+        پروژه‌هایی که با دانش فنی، دقت اجرایی و تعهد حرفه‌ای انجام داده‌ایم
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      @for (project of projects; track project.id) {
+        <article class="project-card">
+          <div class="project-image-wrap">
+            <img
+              [src]="project.image"
+              [alt]="project.title"
+              width="640"
+              height="420"
+              loading="lazy"
+              (error)="onImageError($event)"
+            />
+
+            <div class="project-overlay">
+              <span class="project-category">
+                {{ project.category }}
+              </span>
+
+              <h3>{{ project.title }}</h3>
+
+              <a
+                mat-stroked-button
+                class="project-link"
+                routerLink="/projects"
+              >
+                مشاهده پروژه
+                <mat-icon>arrow_back</mat-icon>
+              </a>
+            </div>
+          </div>
+
+          <div class="project-content">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+
+    <div class="section-action">
+      <a
+        mat-flat-button
+        class="primary-button"
+        routerLink="/projects"
+      >
+        مشاهده همه پروژه‌ها
+        <mat-icon>arrow_back</mat-icon>
+      </a>
+    </div>
+  </div>
+</section>

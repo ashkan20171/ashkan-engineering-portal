@@ -1,0 +1,84 @@
+@if (project(); as p) {
+  <div class="project-detail-page">
+<div class="breadcrumb-bar">
+<div class="container">
+<a routerLink="/">خانه</a> / 
+<a routerLink="/projects">پروژه‌ها</a> / 
+<span>{{ p.title }}</span>
+</div>
+</div>
+
+<div class="container main-grid">
+<!-- Media & Description Column -->
+<div class="content-col">
+<div class="main-image">
+<img [src]="activeImage()" [alt]="p.title" (error)="onImageError($event)" />
+</div>
+
+<div class="thumbnail-gallery">
+@for (img of p.gallery; track img) {
+<div class="thumb" [class.active]="activeImage() === img" (click)="setActiveImage(img)">
+<img [src]="img" [alt]="p.title" (error)="onImageError($event)" />
+</div>
+}
+</div>
+
+<div class="text-card">
+<h2>درباره این پروژه</h2>
+<p class="description">{{ p.description }}</p>
+
+<h3>ویژگی‌ها و نکات فنی</h3>
+<ul class="feature-list">
+@for (f of p.features; track f) {
+<li><mat-icon>check_circle</mat-icon> <span>{{ f }}</span></li>
+}
+</ul>
+</div>
+</div>
+
+<!-- Specs Sidebar -->
+<aside class="sidebar-col">
+<div class="specs-card">
+<h3>مشخصات و شناسنامه پروژه</h3>
+
+<div class="spec-row">
+<span class="label">کارفرما:</span>
+<span class="val">{{ p.client }}</span>
+</div>
+
+<div class="spec-row">
+<span class="label">موقعیت مکانی:</span>
+<span class="val">{{ p.location }}</span>
+</div>
+
+<div class="spec-row">
+<span class="label">متراژ / احجام:</span>
+<span class="val">{{ p.area }}</span>
+</div>
+
+<div class="spec-row">
+<span class="label">سال اجرا:</span>
+<span class="val">{{ p.year }}</span>
+</div>
+
+<div class="spec-row">
+<span class="label">دسته‌بندی:</span>
+<span class="val">{{ p.categoryTitle }}</span>
+</div>
+
+<div class="spec-row">
+<span class="label">وضعیت پروژه:</span>
+<span class="badge" [class.completed]="p.status === 'تکمیل شده'">{{ p.status }}</span>
+</div>
+
+<hr />
+
+<a routerLink="/contact" class="cta-btn">
+<mat-icon>phone_in_talk</mat-icon>
+<span>استعلام پروژه مشابه</span>
+</a>
+</div>
+</aside>
+</div>
+  </div>
+}
